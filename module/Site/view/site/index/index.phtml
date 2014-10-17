@@ -1,0 +1,25 @@
+<div class="jumbotron">
+    <h1><?php echo sprintf($this->translate('Welcome to %sZend Framework 2%s'), '<span class="zf-green">', '</span>') ?></h1>
+    <h3><?php echo 'Version current of the ZF2 '.\Zend\Version\Version::VERSION; ?></h3>
+    <p>You are just intalar ZF2 along with the modules Site, Xoperator Doctrine.
+    These methods together enable adminstration content to your site using Zend Framework 2
+    to know better the ZF2 click the button below and you will be redirected to a basic
+    application surgerida by Zend, or see the instructions on the GitHub project Xoperator.</p>
+    <p><a class="btn btn-success btn-lg" href="https://github.com/zendframework/zf2" target="_blank"><?php echo $this->translate('Fork Zend Framework 2 on GitHub') ?> &raquo;</a></p>
+</div>
+
+<div class="row">
+    <?php foreach ($this->articles as $article) : ?>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->escapeHtml($article->title);?></h3>
+            </div>
+            <div class="panel-body">
+                <p><?php echo substr($this->escapeHtml($article->text),0,400);?>...</p>
+                <p><a class="btn btn-success pull-right" href="<?php echo __siteHOST__."article/".$article->url; ?>"><?php echo $this->escapeHtml('More') ?> &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+     <?php endforeach; ?>
+</div>

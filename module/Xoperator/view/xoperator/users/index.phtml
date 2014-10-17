@@ -1,0 +1,35 @@
+ <?php
+ // module/Album/view/album/album/index.phtml:
+ $title = 'Usuários';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a class="btn btn-success" href="<?php echo $this->url('users', array('action'=>'add'));?>">
+         <span class="glyphicon glyphicon-plus"></span>&nbsp;
+         <?php echo $this->translate('Adicionar novo usuário')?>
+     </a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th><?php echo $this->translate('Nome')?></th>
+     <th><?php echo $this->translate('Email')?></th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($users as $user) : ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($user->username);?></td>
+     <td><?php echo $this->escapeHtml($user->email);?></td>
+     <td>
+         <span class="glyphicon glyphicon-pencil"></span>
+         <a href="<?php echo $this->url('users',
+             array('action'=>'edit', 'id' => $user->id));?>">Edit</a>
+         &nbsp;
+         <span class="glyphicon glyphicon-trash"></span>
+         <a href="<?php echo $this->url('users',
+             array('action'=>'delete', 'id' => $user->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>

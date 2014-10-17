@@ -1,0 +1,45 @@
+<?php
+
+$title_head = '';
+
+$cropLink = new \Xoperator\Xcore\OptionTags;
+
+
+foreach ($this->article_head as $article_data)
+    if(!$article_data == null){
+        $title_head = $article_data->title;
+        $this->headTitle($title_head);
+        $this->headMeta()->appendName('keywords', $article_data->tags);
+        $this->headMeta()->appendName('description',$article_data->description);
+        $this->headMeta()->appendName('author',__xopAUTHOR__);
+        $this->headMeta()->appendName('robots', 'index, follow');
+    }
+?>
+<?php
+    if(!$this->message_error_articles){
+?>
+<br class="clearfix"/>
+<div class="col-md-4" style="width:50%;">
+    <img id="image_site_article" class="img-responsive" src="<?=$this->name_image?>" alt=""/>
+</div>
+<h1><?=$title_head?></h1>
+<p class="read_text_site_article"><?=$cropLink->cropLink(nl2br($article_data->text))?></p>
+<hr>
+<?php
+    //message of error not found
+    }else{
+        $this->headTitle("Article don't exist!");
+        echo '<h1><span class="glyphicon glyphicon-remove"></span>&nbsp;'.$this->article_param.'</h1>';
+        echo '<h3>'.$this->message_error_articles.'</h3>';
+    }
+?>
+<p class="text-info"><span class="glyphicon glyphicon-book"></span>&nbsp;<strong>See other articles:</strong></p>
+<table class="table">
+ <?php foreach ($this->articles as $article) : ?>
+ <tr>
+     <td><a href="<?php echo $this->url('article',array('action'=>'article','article'=>$article->url))?>"><?php echo $this->escapeHtml($article->title);?></a></td>
+     <td><?php echo substr($this->escapeHtml($article->text),0,100);?>...</td>
+     <td></td>
+ </tr>
+ <?php endforeach; ?>
+ </table>
