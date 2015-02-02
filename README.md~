@@ -49,7 +49,7 @@ the "vendor" folder.
                     'port'     => '3306',
                     'user'     => 'root',
                     'password' => '',
-                    'dbname'   => 'data_base'
+                    'dbname'   => 'sitezf2_base'
             )
         
      ),
